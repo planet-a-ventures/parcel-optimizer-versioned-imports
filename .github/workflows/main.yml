@@ -23,7 +23,9 @@ jobs:
       - name: npm install
         run: npm ci
       - name: Test
-        run: npm test
+        run: npm run test:update-snapshots
+      - name: diff
+        run: git diff --exit-code
   npm:
     runs-on: ubuntu-latest
     needs: build

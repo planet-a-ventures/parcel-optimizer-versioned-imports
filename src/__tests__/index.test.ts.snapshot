@@ -1,3 +1,3 @@
-exports[`parcel-transformer-versioned-imports > transforms assets 1`] = `
+exports[`parcel-optimizer-versioned-imports > transforms assets 1`] = `
 "import $bdjGp$camelcase from \\"camelcase@8.0.0\\";\\n\\n\\nconsole.log((0, $bdjGp$camelcase)(\\"hello-world\\"));\\n\\n\\n//# sourceMappingURL=index.js.map\\n"
 `;

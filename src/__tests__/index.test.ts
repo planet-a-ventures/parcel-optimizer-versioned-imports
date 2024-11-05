@@ -12,7 +12,7 @@ const fixtureRoot = join(rootPath, "src/__tests__/fixtures");
 
 const { MemoryFS } = parcelFs;
 
-suite("parcel-transformer-versioned-imports", async () => {
+suite("parcel-optimizer-versioned-imports", async () => {
   const workerFarm = createWorkerFarm();
   let outputFS = new MemoryFS(workerFarm);
 
