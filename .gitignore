@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.pre-commit-config.yaml
+.direnv
+.parcel-cache
+planet-a-parcel-optimizer-versioned-imports-*.tgz
