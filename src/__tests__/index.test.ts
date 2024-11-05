@@ -43,7 +43,7 @@ suite("parcel-optimizer-versioned-imports", async () => {
       bundleGraph.getBundles()[0].filePath,
       "utf8",
     );
-    output.indexOf('from "camlecase@8.0.0"')
+    output.indexOf('from "camlecase@8.0.0"');
     // snapshots not working on github CI for some reason
     // t.assert.snapshot(output);
   });
