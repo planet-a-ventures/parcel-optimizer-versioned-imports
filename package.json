@@ -22,9 +22,8 @@
   "scripts": {
     "watch": "parcel watch",
     "build": "rimraf dist && parcel build",
-    "test": "node --import tsx --test --experimental-test-snapshots ./src/__tests__/*.test.ts",
-    "test:update-snapshots": "node --import tsx --test --experimental-test-snapshots --test-update-snapshots ./src/__tests__/*.test.ts",
-    "test:watch": "node --import tsx --test --experimental-test-snapshots --watch ./src/__tests__/*.test.ts"
+    "test": "node --import tsx ./src/__tests__/*.test.ts",
+    "test:watch": "node --import tsx --test --watch ./src/__tests__/*.test.ts"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",
