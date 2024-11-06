@@ -1,0 +1,17 @@
+{
+  "name": "project_2",
+  "version": "1.0.0",
+  "source": "index.js",
+  "main": "dist/index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "manual": "rm -rf .parcel-cache/ dist && npx parcel build && cat dist/index.js"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "description": "",
+  "dependencies": {
+    "fs-extra": "^11.2.0"
+  }
+}
