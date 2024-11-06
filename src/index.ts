@@ -138,10 +138,13 @@ export default new Optimizer({
         }
 
         const { name: packageName } = parsedPackage;
-        if (
-          !isBuiltin(packageName) &&
-          packageName in currentPackageDependencies
-        ) {
+        if (isBuiltin(packageName)) {
+          logger.verbose({
+            message: `Skipping built-in package '${packageName}'`,
+          });
+          return;
+        }
+        if (packageName in currentPackageDependencies) {
           logger.verbose({
             message: `Found package '${packageName}' in current dependencies`,
           });
