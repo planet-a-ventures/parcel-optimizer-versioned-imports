@@ -25,6 +25,7 @@ suite("parcel-optimizer-versioned-imports", async () => {
       outputFS,
       workerFarm,
       mode: "production",
+      cacheDir: join(projectDir, ".parcel-cache"),
     });
   };
 
