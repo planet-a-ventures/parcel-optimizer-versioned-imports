@@ -10,7 +10,14 @@ import path from "path";
 // @ts-expect-error next-line
 import { parse as parsePackage } from "parse-package-name";
 import ThrowableDiagnostic from "@parcel/diagnostic";
-import { Opts } from "./opts";
+
+interface Opts {
+  /**
+   * Whether to ignore sub module imports,
+   * e.g. `import { foo } from "foo/path/to/sub/module"`.
+   */
+  ignoreSubmoduleImports: boolean;
+}
 
 const currentAstVersion = "1.0.0";
 
@@ -120,7 +127,10 @@ export default new Optimizer({
           });
           return;
         }
-        if (config.ignoreSubmoduleImports && parsedPackage.path !== "") {
+        if (
+          config.ignoreSubmoduleImports &&
+          parsedPackage.path.trim().length > 0
+        ) {
           logger.verbose({
             message: `Ignoring sub module import: ${packageRef}`,
           });
