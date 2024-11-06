@@ -21,9 +21,12 @@
   ],
   "scripts": {
     "watch": "parcel watch",
-    "build": "rimraf dist && parcel build",
-    "test": "node --import tsx ./src/__tests__/*.test.ts",
-    "test:watch": "node --import tsx --test --watch ./src/__tests__/*.test.ts"
+    "prebuild": "rimraf .parcel-cache dist",
+    "build": "parcel build",
+    "pretest": "cd ./src/__tests__/fixtures/project_1 && rimraf .parcel-cache dist",
+    "test": "node --import tsx --experimental-test-snapshots --test ./src/__tests__/*.test.ts",
+    "test:update-snapshots": "node --import tsx --experimental-test-snapshots --test --test-update-snapshots ./src/__tests__/*.test.ts",
+    "test:watch": "node --import tsx --experimental-test-snapshots --test --watch ./src/__tests__/*.test.ts"
   },
   "devDependencies": {
     "@parcel/core": "^2.12.0",

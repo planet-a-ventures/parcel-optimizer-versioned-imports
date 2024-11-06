@@ -1,9 +1,8 @@
 import { Parcel, createWorkerFarm } from "@parcel/core";
 import parcelFs from "@parcel/fs";
-import { after, beforeEach, suite, test } from "node:test";
 import { dirname, join } from "node:path";
+import { after, beforeEach, suite, test } from "node:test";
 import { fileURLToPath } from "node:url";
-import assert from "node:assert";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,7 +36,7 @@ suite("parcel-optimizer-versioned-imports", async () => {
     outputFS = new MemoryFS(workerFarm);
   });
 
-  test("transforms assets", async () => {
+  test("transforms assets", async (t) => {
     const parcel = getParcelInstance("project_1");
     const { bundleGraph } = await parcel.run();
 
@@ -45,6 +44,6 @@ suite("parcel-optimizer-versioned-imports", async () => {
       bundleGraph.getBundles()[0].filePath,
       "utf8",
     );
-    assert.ok(output.indexOf('from "camelcase@8.0.0"') !== -1);
+    t.assert.snapshot(output);
   });
 });
