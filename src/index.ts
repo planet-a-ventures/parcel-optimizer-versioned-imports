@@ -10,6 +10,7 @@ import path from "path";
 // @ts-expect-error next-line
 import { parse as parsePackage } from "parse-package-name";
 import ThrowableDiagnostic from "@parcel/diagnostic";
+import { Opts } from "./opts";
 
 const currentAstVersion = "1.0.0";
 
@@ -38,39 +39,62 @@ const traverseAST = (node: Program, callback: (node: Node) => void) => {
   }
 };
 
+function getPackageLockContents(packageLockPath: string) {
+  if (!fs.existsSync(packageLockPath)) {
+    // @ts-expect-error next-line
+    throw new ThrowableDiagnostic({
+      diagnostic: {
+        message: `Could not find ${packageLockPath}`,
+      },
+    });
+  }
+  const packageLock = JSON.parse(fs.readFileSync(packageLockPath, "utf8"));
+  assert.strictEqual(
+    packageLock.lockfileVersion,
+    3,
+    "Unsupported lockfile version",
+  );
+  return packageLock;
+}
+
 export default new Optimizer({
-  async optimize({ contents, map, logger, options }) {
+  async loadConfig({ config, options }) {
+    const loadedConfig = await config.getConfig<Opts>(
+      [".parcel-optimizer-versioned-importsrc"],
+      {
+        packageKey: "@planet-a/parcel-optimizer-versioned-imports",
+      },
+    );
+    const ignoreSubmoduleImports =
+      loadedConfig?.contents.ignoreSubmoduleImports ?? false;
+
+    const packageLockPath = path.join(options.projectRoot, "package-lock.json");
+    config.invalidateOnFileChange(packageLockPath);
+    const packageLock = getPackageLockContents(packageLockPath);
+    const currentPackageDependencies: Record<string, string> =
+      packageLock.packages[""].dependencies;
+
+    return { ignoreSubmoduleImports, currentPackageDependencies };
+  },
+
+  async optimize({ contents, map, logger, options, config }) {
+    const { currentPackageDependencies } = config;
+    if (Object.keys(currentPackageDependencies).length === 0) {
+      logger.verbose({
+        message: `No dependencies found in package-lock.json; Nothing to do.`,
+      });
+      return { contents, map };
+    }
+
     const code = contents.toString();
     const ast = await getAST(code);
     assert.ok(ast, "ast is empty");
-
-    const packageLockPath = path.join(options.projectRoot, "package-lock.json");
-    if (!fs.existsSync(packageLockPath)) {
-      // @ts-expect-error next-line
-      throw new ThrowableDiagnostic({
-        diagnostic: {
-          message: `Could not find package-lock.json in project root (${options.projectRoot})`,
-        },
-      });
-    }
-    const packageLock = JSON.parse(fs.readFileSync(packageLockPath, "utf8"));
-    assert.strictEqual(
-      packageLock.lockfileVersion,
-      3,
-      "Unsupported lockfile version",
-    );
 
     const replacements: {
       start: number;
       end: number;
       versionedPackageName: string;
     }[] = [];
-
-    const currentPackageDependencies = packageLock.packages[""].dependencies;
-    if (Object.keys(currentPackageDependencies).length === 0) {
-      logger.verbose({ message: `No dependencies found in package-lock.json` });
-      return { contents: code, map: map };
-    }
 
     traverseAST(ast.program, (node: Node) => {
       // we could support static requires here
@@ -93,6 +117,12 @@ export default new Optimizer({
           // already versioned, skip
           logger.verbose({
             message: `Package ${parsedPackage.name} is already versioned, skipping`,
+          });
+          return;
+        }
+        if (config.ignoreSubmoduleImports && parsedPackage.path !== "") {
+          logger.verbose({
+            message: `Ignoring sub module import: ${packageRef}`,
           });
           return;
         }

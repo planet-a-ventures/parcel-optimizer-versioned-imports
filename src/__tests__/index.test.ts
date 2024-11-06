@@ -46,4 +46,15 @@ suite("parcel-optimizer-versioned-imports", async () => {
     );
     t.assert.snapshot(output);
   });
+
+  test("transforms assets but leaves submodule imports alone", async (t) => {
+    const parcel = getParcelInstance("project_2");
+    const { bundleGraph } = await parcel.run();
+
+    const output = await outputFS.readFile(
+      bundleGraph.getBundles()[0].filePath,
+      "utf8",
+    );
+    t.assert.snapshot(output);
+  });
 });
