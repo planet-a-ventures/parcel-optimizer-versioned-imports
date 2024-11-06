@@ -8,6 +8,13 @@
     "type": "git",
     "url": "https://github.com/parcel-optimizer-versioned-imports.git"
   },
+  "keywords": [
+    "parcel",
+    "optimizer",
+    "versioning",
+    "imports",
+    "pipedream"
+  ],
   "license": "MIT",
   "author": "Joscha Feth",
   "sideEffects": false,
@@ -15,6 +22,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "src/*.ts"
