@@ -1,0 +1,58 @@
+{
+  "name": "@planet-a/parcel-optimizer-versioned-imports",
+  "version": "0.0.0",
+  "description": "A Parcel optimizer that allows you to use versioned imports in your bundled code.",
+  "homepage": "https://github.com/parcel-optimizer-versioned-imports/",
+  "bugs": "https://github.com/parcel-optimizer-versioned-imports//issues/new?assignees=&labels=bug&template=bug_report.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/parcel-optimizer-versioned-imports.git"
+  },
+  "license": "MIT",
+  "author": "Joscha Feth",
+  "sideEffects": false,
+  "source": "src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "src/*.ts"
+  ],
+  "scripts": {
+    "watch": "parcel watch",
+    "prebuild": "rimraf .parcel-cache dist",
+    "build": "parcel build",
+    "pretest": "cd ./src/__tests__/fixtures/project_1 && rimraf .parcel-cache dist",
+    "test": "node --import tsx --experimental-test-snapshots --test ./src/__tests__/*.test.ts",
+    "test:update-snapshots": "node --import tsx --experimental-test-snapshots --test --test-update-snapshots ./src/__tests__/*.test.ts",
+    "test:watch": "node --import tsx --experimental-test-snapshots --test --watch ./src/__tests__/*.test.ts"
+  },
+  "devDependencies": {
+    "@parcel/core": "^2.12.0",
+    "@parcel/fs": "^2.12.0",
+    "@parcel/packager-ts": "^2.12.0",
+    "@parcel/transformer-typescript-types": "^2.12.0",
+    "@types/node": "^22.9.0",
+    "@types/parse-package-name": "^0.1.3",
+    "@types/semver": "^7.5.8",
+    "parcel": "^2.12.0",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "acorn": "^8.14.0",
+    "magic-string": "^0.30.12",
+    "parse-package-name": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@parcel/diagnostic": "2.12.0",
+    "@parcel/plugin": "^2.12.0",
+    "@parcel/types": "^2.12.0"
+  },
+  "engines": {
+    "node": ">= 20.0.0",
+    "parcel": "^2.12.0"
+  }
+}
