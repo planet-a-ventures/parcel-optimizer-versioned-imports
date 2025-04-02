@@ -1,3 +1,7 @@
+exports[`parcel-optimizer-versioned-imports > teaves built-in modules alone 1`] = `
+"import $bdjGp$nodeassert from \\"node:assert\\";\\n\\n\\n(0, $bdjGp$nodeassert).ok(true);\\n\\n\\n//# sourceMappingURL=index.js.map\\n"
+`;
+
 exports[`parcel-optimizer-versioned-imports > transforms assets 1`] = `
 "import $bdjGp$camelcase from \\"camelcase@8.0.0\\";\\n\\n\\nconsole.log((0, $bdjGp$camelcase)(\\"hello-world\\"));\\n\\n\\n//# sourceMappingURL=index.js.map\\n"
 `;

@@ -57,4 +57,15 @@ suite("parcel-optimizer-versioned-imports", async () => {
     );
     t.assert.snapshot(output);
   });
+
+  test("teaves built-in modules alone", async (t) => {
+    const parcel = getParcelInstance("project_3");
+    const { bundleGraph } = await parcel.run();
+
+    const output = await outputFS.readFile(
+      bundleGraph.getBundles()[0].filePath,
+      "utf8",
+    );
+    t.assert.snapshot(output);
+  });
 });
