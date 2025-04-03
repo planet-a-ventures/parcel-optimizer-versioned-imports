@@ -76,7 +76,6 @@ export default new Optimizer({
       loadedConfig?.contents.ignoreSubmoduleImports ?? false;
 
     const packageLockPath = path.join(options.projectRoot, "package-lock.json");
-    console.log("packageLockPath", packageLockPath);
     config.invalidateOnFileChange(packageLockPath);
     const packageLock = getPackageLockContents(packageLockPath);
     const currentPackageDependencies: Record<string, string> =
