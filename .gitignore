@@ -133,3 +133,12 @@ dist
 .direnv
 .parcel-cache
 planet-a-parcel-optimizer-versioned-imports-*.tgz
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
