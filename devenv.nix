@@ -8,6 +8,8 @@
   # https://devenv.sh/languages/
   languages.javascript.enable = true;
   languages.javascript.package = pkgs.nodejs_23;
+  languages.javascript.npm.enable = true;
+  languages.javascript.npm.install.enable = true;
 
   # https://devenv.sh/scripts/
   scripts.npm-version-from-git.exec = ''
