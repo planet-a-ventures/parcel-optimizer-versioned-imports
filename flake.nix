@@ -35,7 +35,7 @@
           '';
           buildInputs = with pkgs; [
             commitizen
-            nodejs_22
+            nodejs_23
             nodePackages.prettier
           ];
         };
