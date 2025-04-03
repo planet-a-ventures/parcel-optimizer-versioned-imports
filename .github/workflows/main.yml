@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: npm-package
-          path: planet-a-parcel-optimizer-versioned-imports-*.tgz
+          path: planet-a-parcel-optimizer-versioned-imports-${{ steps.get_tag_version.outputs.TAG_VERSION }}.tgz
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
