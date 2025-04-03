@@ -28,7 +28,7 @@
   '';
 
   scripts.publish.exec = ''
-    npm publish
+    npm publish "$@"
   '';
 
   # https://devenv.sh/tests/

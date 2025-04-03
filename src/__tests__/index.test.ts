@@ -3,7 +3,6 @@ import parcelFs from "@parcel/fs";
 import { dirname, join } from "node:path";
 import { after, beforeEach, suite, test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { snapshot } from "node:test";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,12 +11,6 @@ const rootPath = join(__dirname, "..", "..");
 const fixtureRoot = join(rootPath, "src/__tests__/fixtures");
 
 const { MemoryFS } = parcelFs;
-
-snapshot.setResolveSnapshotPath((path) => {
-  const snapshotPath = `${path}.snapshot`;
-  console.warn("Expected snapshot path", snapshotPath);
-  return snapshotPath;
-});
 
 suite("parcel-optimizer-versioned-imports", async () => {
   const workerFarm = createWorkerFarm();
