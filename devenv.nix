@@ -23,6 +23,10 @@
     npm run build
   '';
 
+  scripts.package.exec = ''
+    npm pack
+  '';
+
   scripts.all-tests.exec = ''
     npm test
   '';
