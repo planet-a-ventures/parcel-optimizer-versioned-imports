@@ -1,4 +1,4 @@
-exports[`parcel-optimizer-versioned-imports > teaves built-in modules alone 1`] = `
+exports[`parcel-optimizer-versioned-imports > leaves built-in modules alone 1`] = `
 "import $bdjGp$nodeassert from \\"node:assert\\";\\n\\n\\n(0, $bdjGp$nodeassert).ok(true);\\n\\n\\n//# sourceMappingURL=index.js.map\\n"
 `;
 

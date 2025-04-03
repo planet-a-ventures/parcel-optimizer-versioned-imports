@@ -15,7 +15,7 @@ const { MemoryFS } = parcelFs;
 
 snapshot.setResolveSnapshotPath((path) => {
   const snapshotPath = `${path}.snapshot`;
-  console.log("Expected snapshot path", snapshotPath);
+  console.warn("Expected snapshot path", snapshotPath);
   return snapshotPath;
 });
 
@@ -65,7 +65,7 @@ suite("parcel-optimizer-versioned-imports", async () => {
     t.assert.snapshot(output);
   });
 
-  test("teaves built-in modules alone", async (t) => {
+  test("leaves built-in modules alone", async (t) => {
     const parcel = getParcelInstance("project_3");
     const { bundleGraph } = await parcel.run();
 
