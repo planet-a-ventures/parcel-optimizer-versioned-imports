@@ -79,7 +79,7 @@ export default new Optimizer({
     config.invalidateOnFileChange(packageLockPath);
     const packageLock = getPackageLockContents(packageLockPath);
     const currentPackageDependencies: Record<string, string> =
-      packageLock.packages[""].dependencies;
+      packageLock.packages[""].dependencies ?? {};
 
     return { ignoreSubmoduleImports, currentPackageDependencies };
   },
