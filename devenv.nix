@@ -21,7 +21,7 @@
     npm run build
   '';
 
-  scripts.test.exec = ''
+  scripts.all-tests.exec = ''
     npm test
   '';
 
@@ -31,7 +31,7 @@
 
   # https://devenv.sh/tests/
   enterTest = ''
-    test
+    all-tests
   '';
 
   # https://devenv.sh/git-hooks/
