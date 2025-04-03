@@ -41,13 +41,15 @@
   '';
 
   # https://devenv.sh/git-hooks/
-  # git-hooks.hooks.shellcheck.enable = true;
-  git-hooks.hooks.nixpkgs-fmt.enable = true;
-  git-hooks.hooks.commitizen.enable = true;
-  git-hooks.hooks.typos.enable = true;
-  git-hooks.hooks.prettier.enable = true;
-  git-hooks.hooks.yamllint.enable = true;
-  git-hooks.hooks.yamlfmt.enable = true;
+  git-hooks.hooks = {
+    nixpkgs-fmt.enable = true;
+    commitizen.enable = true;
+    typos.enable = true;
+    prettier.enable = true;
+    yamllint.enable = true;
+    yamlfmt.enable = true;
+    yamlfmt.settings.lint-only = false;
+  };
 
   # See full reference at https://devenv.sh/reference/options/
 }
