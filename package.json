@@ -34,7 +34,7 @@
     "watch": "parcel watch",
     "prebuild": "rimraf .parcel-cache dist",
     "build": "parcel build",
-    "pretest": "cd ./src/__tests__/fixtures/project_1 && rimraf .parcel-cache dist",
+    "pretest": "pushd ./src/__tests__/fixtures/project_1 && rimraf .parcel-cache dist && popd",
     "test": "node --import tsx --experimental-test-snapshots --test ./src/__tests__/*.test.ts",
     "test:update-snapshots": "node --import tsx --experimental-test-snapshots --test --test-update-snapshots ./src/__tests__/*.test.ts",
     "test:watch": "node --import tsx --experimental-test-snapshots --test --watch ./src/__tests__/*.test.ts"
