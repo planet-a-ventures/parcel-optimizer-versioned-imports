@@ -57,7 +57,7 @@
     "parse-package-name": "^1.0.0"
   },
   "peerDependencies": {
-    "@parcel/diagnostic": "2.15.4",
+    "@parcel/diagnostic": "2.16.0",
     "@parcel/plugin": "^2.12.0",
     "@parcel/types": "^2.12.0"
   },
