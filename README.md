@@ -16,9 +16,9 @@ as needed for [Pipedream](https://pipedream.com/docs/code/nodejs#pinning-package
 
 ## Caveats
 
-- I added rudimentary sourcemap support, but as [Pipedream](https://pipedream.com) does not currently support source maps, it is untested.If you need working sourcemap support for this optimizer -> Contributions welcome.
+- I added rudimentary sourcemap support, but as [Pipedream](https://pipedream.com) does not currently support source maps, it is untested. If you need working sourcemap support for this optimizer -> Contributions welcome.
 - Only works for `ImportDeclaration` nodes, not commonjs imports. Contributions welcome.
-- Currently only supports npm-based projects that have a `package-lock.json` file, as this is used to determine the embedded version. It should be simpel to support other packagers and their dependency graph definitions -> Contributions welcome (starting point could be [this package](https://github.com/snyk/nodejs-lockfile-parser)).
+- Currently only supports npm-based projects that have a `package-lock.json` file, as this is used to determine the embedded version. It should be simple to support other packagers and their dependency graph definitions -> Contributions welcome (starting point could be [this package](https://github.com/snyk/nodejs-lockfile-parser)).
 
 ## How to use
 
