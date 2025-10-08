@@ -7,7 +7,7 @@
 
   # https://devenv.sh/languages/
   languages.javascript.enable = true;
-  languages.javascript.package = pkgs.nodejs_23;
+  languages.javascript.package = pkgs.nodejs_22;
   languages.javascript.npm.enable = true;
   languages.javascript.npm.install.enable = true;
 
@@ -43,7 +43,8 @@
   # https://devenv.sh/git-hooks/
   git-hooks.hooks = {
     nixpkgs-fmt.enable = true;
-    commitizen.enable = true;
+    # Temporarily disabled due to issues with commitizen
+    # commitizen.enable = true;
     typos.enable = true;
     prettier.enable = true;
     yamllint.enable = true;
